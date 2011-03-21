@@ -10,15 +10,10 @@ Capybara.app = Rack::Builder.new
 Capybara.app_host = "http://www.e-stat.go.jp/"
 Capybara.default_wait_time = 30
 Capybara.register_driver :selenium do |app|
-    # Capybara::Driver::Selenium.new(app, :browser => :chrome)
-    Capybara::Driver::Selenium.new(app, :browser => :firefox, :profile => "e-stat")
+  # Capybara::Driver::Selenium.new(app, :browser => :chrome)
+  Capybara::Driver::Selenium.new(app, :browser => :firefox, :profile => "e-stat")
 end
 Capybara.default_driver = :selenium
-
-# Not working as expected
-# Create your own profile using /Applications/Firefox.app/Contents/MacOS/firefox-bin -profilemanager
-# Then 
-# Selenium::WebDriver.for :firefox, :profile => "e-stat"
 
 Spec::Runner.configure do |config| 
   config.include(Capybara, :type => :request) 
