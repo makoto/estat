@@ -8,9 +8,12 @@ require 'rack'
 
 Capybara.app = Rack::Builder.new
 Capybara.app_host = "http://www.e-stat.go.jp/"
-Capybara.default_wait_time = 130
+Capybara.default_wait_time = 400
 Capybara.register_driver :selenium do |app|
   # Capybara::Driver::Selenium.new(app, :browser => :chrome)
+  # NOTE: Create your own "e-stat" using /Applications/Firefox.app/Contents/MacOS/firefox-bin -profilemanager
+  # Then go through e-stat page using the profile, save some files, and click "Do this automatically for files like this from now on".
+  # This is to avoid popup to come up when saving files. You may not need to do this if you choose chrome, but I haven't tried that route yet.
   Capybara::Driver::Selenium.new(app, :browser => :firefox, :profile => "e-stat")
 end
 Capybara.default_driver = :selenium
